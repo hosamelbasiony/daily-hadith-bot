@@ -11,7 +11,6 @@ def get_random_hadith():
         data = json.load(f)
 
     hadith = random.choice(data["hadiths"])
-
     return hadith["arabic"]
 
 def send_telegram_message(text):
