@@ -6,7 +6,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 # رابط JSON على GitHub (Raw file)
-JSON_URL = "https://raw.githubusercontent.com/USERNAME/REPO/main/hadith.json"
+JSON_URL = "https://raw.githubusercontent.com/AhmedBaset/hadith-json/refs/heads/main/db/by_book/other_books/riyad_assalihin.json"
 
 def get_random_hadith():
     response = requests.get(JSON_URL)
