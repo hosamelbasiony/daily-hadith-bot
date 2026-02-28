@@ -10,16 +10,15 @@ JSON_URL = "https://raw.githubusercontent.com/AhmedBaset/hadith-json/refs/heads/
 
 def get_random_hadith():
     response = requests.get(JSON_URL)
+
+    print("STATUS:", response.status_code)
+    print("HEADERS:", response.headers.get("content-type"))
+    print("FIRST 300 CHARS:\n", response.text[:300])
+
     data = response.json()
 
-    # لو JSON عبارة عن Array مباشرة
-    if isinstance(data, list):
-        hadith = random.choice(data)
-    else:
-        # لو JSON فيه key زي "hadiths"
-        hadith = random.choice(data["hadiths"])
-
-    return hadith["text"] if "text" in hadith else str(hadith)
+    hadith = random.choice(data["hadiths"])
+    return hadith["arabic"]
 
 def send_telegram_message(text):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
