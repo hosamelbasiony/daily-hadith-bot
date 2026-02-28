@@ -1,23 +1,17 @@
 import os
+import json
 import random
 import requests
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
-# رابط JSON على GitHub (Raw file)
-JSON_URL = "https://raw.githubusercontent.com/AhmedBaset/hadith-json/refs/heads/main/db/by_book/other_books/riyad_assalihin.json"
-
 def get_random_hadith():
-    response = requests.get(JSON_URL)
-
-    print("STATUS:", response.status_code)
-    print("HEADERS:", response.headers.get("content-type"))
-    print("FIRST 300 CHARS:\n", response.text[:300])
-
-    data = response.json()
+    with open("riyad_assalihin.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
 
     hadith = random.choice(data["hadiths"])
+
     return hadith["arabic"]
 
 def send_telegram_message(text):
